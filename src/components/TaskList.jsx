@@ -40,6 +40,19 @@ export default function TaskList({
         setTaskToDelete(null);
     }
 
+    function getStatusBadgeClass(status) {
+        switch (status) {
+            case "do_zrobienia":
+                return "bg-secondary";
+            case "w_trakcie":
+                return "bg-warning text-dark";
+            case "ukonczone":
+                return "bg-success";
+            default:
+                return "bg-light text-dark border";
+        }
+    }
+
     return (
         <div>
             <div className="d-flex justify-content-between align-items-center mb-3">
@@ -75,7 +88,7 @@ export default function TaskList({
                                     </p>
 
                                     <div className="mb-3">
-                                        <span className="badge bg-light text-dark border">
+                                        <span className={`badge ${getStatusBadgeClass(task.status)}`}>
                                             {task.status}
                                         </span>
                                     </div>
